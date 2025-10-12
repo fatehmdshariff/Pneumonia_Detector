@@ -1,7 +1,7 @@
 import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.models import Model
-from utils import preprocess_image, predict_image
+from image_utils import preprocess_image, predict_image
 import numpy as np
 import os
 import glob
