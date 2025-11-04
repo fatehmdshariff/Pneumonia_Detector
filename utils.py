@@ -2,9 +2,6 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-# ---------------------------------------------------------
-# 1️⃣  Preprocess image
-# ---------------------------------------------------------
 def preprocess_image(uploaded_file, target_size=(224, 224)):
     """Reads and preprocesses an uploaded image for model prediction."""
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
@@ -22,9 +19,6 @@ def preprocess_image(uploaded_file, target_size=(224, 224)):
     return img_expanded, img_rgb
 
 
-# ---------------------------------------------------------
-# 2️⃣  Predict image
-# ---------------------------------------------------------
 def predict_image(model, preprocessed_img):
     """Runs prediction and returns label + confidence."""
     # Note: Model prediction is stable and works correctly
