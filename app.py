@@ -46,12 +46,9 @@ if os.path.isdir(PNEUMONIA_DIR):
 
 # Warn user if no images were found
 if not SAMPLE_IMAGES:
-    st.sidebar.warning(f"⚠️ Could not find sample images in '{SAMPLE_DIR}' directory. Check folder structure.")
+    st.sidebar.warning(f" Could not find sample images in '{SAMPLE_DIR}' directory. Check folder structure.")
 
 
-# ============================================================
-# 1️⃣ Load & Stabilize Model
-# ============================================================
 @st.cache_resource
 def load_and_stabilize_model():
     """
@@ -80,7 +77,7 @@ def load_and_stabilize_model():
         return model
 
     except Exception as e:
-        st.error(f"❌ Error loading model: {e}")
+        st.error(f" Error loading model: {e}")
         st.stop()
 
 
@@ -88,9 +85,6 @@ def load_and_stabilize_model():
 model = load_and_stabilize_model()
 
 
-# ============================================================
-# 2️⃣ Streamlit UI & Prediction Logic
-# ============================================================
 st.title("🩺 AI-Powered Chest X-Ray Analysis")
 st.markdown("Upload a chest X-ray image (JPEG/PNG) for Pneumonia detection.")
 
@@ -105,9 +99,6 @@ uploaded_file = st.file_uploader(
     type=["jpg", "jpeg", "png"]
 )
 
-# ============================================================
-# Input Handling Logic
-# ============================================================
 input_file = None
 
 if selected_sample != "Upload your own image":
@@ -116,16 +107,13 @@ if selected_sample != "Upload your own image":
     if os.path.exists(file_path):
         input_file = open(file_path, "rb")
     else:
-        st.error(f"❌ Sample image not found at: {file_path}")
+        st.error(f" Sample image not found at: {file_path}")
         st.stop()
 
 elif uploaded_file is not None:
     # Use uploaded file
     input_file = uploaded_file
 
-# ============================================================
-# Prediction Pipeline
-# ============================================================
 if input_file is not None:
     col1, col2 = st.columns([1, 2])
 
@@ -160,9 +148,6 @@ if input_file is not None:
         st.markdown(f"<p style='margin-top: 10px;'>{message}</p>", unsafe_allow_html=True)
 
 
-# ============================================================
-# 3️⃣ Sidebar Technical Info
-# ============================================================
 st.sidebar.info("Upload your own image, or select a sample from the dropdown above.")
 st.sidebar.markdown("""
 ---
